@@ -1,12 +1,4 @@
 describe("Index", () => {
-  it("displays a top bar", () => {
-    cy.react("TopBar").should("exist");
-    cy.react("TopBar").contains("GoFundMe");
-    cy.react("TopBar").contains(
-      "Help me go on a vacation to a beach somewhere!"
-    );
-  });
-
   it("displays the progress total", () => {
     cy.react("Progress").should("exist");
     cy.react("Progress").contains("Raised $335 of $1000");
