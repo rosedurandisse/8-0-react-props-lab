@@ -105,14 +105,12 @@ For the progress section, you will need to replace the value `$0` with a dynamic
 For the recent donations section, you will need to have a number of `li` elements equal to the number of donations. Each `li` should include the person who donated, the amount, and their caption.
 
 ```html
-<section class="sidebar">
-  <section>
-    <h2>Recent Donations</h2>
-    <ul>
-      <li><span>Jo donated $25</span>You really need this. Really.</li>
-      <li><span>Rami donated $10</span>Here, take a break from work!</li>
-      <!-- etc... -->
-    </ul>
-  </section>
+<section>
+  <h2>Recent Donations</h2>
+  <ul>
+    <li><span>Jo donated $25</span>You really need this. Really.</li>
+    <li><span>Rami donated $10</span>Here, take a break from work!</li>
+    <!-- etc... -->
+  </ul>
 </section>
 ```
