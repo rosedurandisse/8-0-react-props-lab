@@ -1,61 +1,118 @@
-[![Pursuit Logo](https://avatars1.githubusercontent.com/u/5825944?s=200&v=4)](https://pursuit.org)
+# React Props Lab
 
-# Pursuit Core Web Props Lab
+Pass props through multiple components to build a mockup of a "FundMe"-type website.
 
-![goFundMe](./goFundMe.png)
+![Image of completed application.](./assets/mockup.png)
 
-Included in this repo is an [html file](./reference.html) that renders a static version in HTML.
-Build a React app modeled after the image above.
+---
 
-> Most of your class names and HTML elements can be copied from the reference file.
+## Lab Setup
 
-It should use each of the following components declared under `src/Components` as a separate `.js` file, like `src/Components/TopBar.js`:
+### Getting started
 
-## Top Bar
+1. Fork and clone this repository.
 
-Displays the welcome banner for the donation page.
-We've created this one for you.
+1. Navigate to the cloned repository's directory on your command line. Then, run the following command:
 
-## Recent Donations
+   ```
+   npm install
+   ```
 
-Displays a list of each of the previous donations, including the amounts, names and captions.
-It should receive the list of donations as a `donations` prop.
+   This will install the libraries needed to run the tests.
 
-## Progress
+1. Open up the repository in VSCode. Follow the instructions below to complete the Lab.
 
-It should receive the total money amount as a `total` prop and the goal as a `goal` prop.
-Use an `h2` for its heading.
+### Tests
 
-- Displays how much total money has been raised out of the goal
-- (Bonus) Display a progress bar that is filled up to the appropriate percentage. It should also display the exact percentage in text (`44.10%`)
+To run the tests, you can run the following command from the command line. You will need to be in the root directory of your local directory.
 
-## Donation Form
+```
+npm test
+```
 
-Should include:
+This will open the Cypress testing window, where you can click to run an individual suite of tests or all of the tests at once.
 
-- A field for the donor's name to be entered
-- A field for the caption
-- A [range](https://www.w3schools.com/tags/att_input_type_range.asp) that sets the donation amount
-- A "Donate" submit button
+#### Testing Tips
 
-> The "Donate" submit button won't do anything -- we haven't taught that yet.
+Keep the following in mind for this lab as you run the tests.
 
-## Getting Started
+1. While running your tests, you must have a server up and running in another terminal. This means you will have _both_ a terminal window running the actual React application _and_ a terminal window running the tests.
 
-- Fork this repo
-- Clone the forked repository
-- `cd` to the directory where you cloned it
-- `npm install` to install dependencies
-- `npm run cypress` to open the cypress testing window
-- `npm test` to run jest / node tests
-- `npm run test:bonus` to run jest / node tests _including the bonus tests_
+1. When creating a component, make sure to create and import it with the same name as the file name. For example, the component created and exported inside of the `Post.js` file should be `Post`. The tests look for these specific names.
 
-> _Note_: Remember to `git add`, `git commit` and `git push` regularly
+1. While the `cypress-watch-and-reload` package has been installed in this project, sometimes the React application will take longer to reload than the tests. If you feel as though a test should be passing that isn't, try pressing the re-run button in the Cypress tests before asking for help.
 
-## Submission Guidelines
+## Instructions
 
-- When finished, commit and push your work.
-- Make a pull request on github.
-- Submit the link to your pull request on Canvas.
+Inside of the `App.js` file are two variables which will serve as props for your application:
 
-[Additional instructions]
+1. `targetAmount`: A number, in dollars, that represents the total amount of money attempting to be raised.
+
+1. `donations`: An array of objects, where each object represents a donation.
+
+Create each component in the `Components/` directory and pass props from the `App` to each components to create the mockup as seen above. HTML snippets for each component is included below.
+
+### Components
+
+Each of the components below must be completed and must make use of props. A "hardcoded" HTML snippet is included below so that you can focus on passing props as opposed to creating HTML. _Do not_ just copy and paste the HTML into the component and update the text. While this may pass the tests, it does not demonstrate you know anything about props.
+
+#### DonationForm
+
+For the donation form, you will need to update the sentence "You could be donation #1!" so that instead of being hardcoded to the number `1`, it is set to a number one above the number of donations.
+
+```html
+<section class="donation">
+  <h3>You could be donation <span class="secondary">#1!</span></h3>
+  <form>
+    <label
+      >Name<input
+        id="name"
+        name="name"
+        type="text"
+        placeholder="Your name..." /></label
+    ><label
+      >Caption<input
+        id="caption"
+        name="caption"
+        type="text"
+        placeholder="Add a brief message..." /></label
+    ><label for="amount"
+      >Amount<input
+        id="amount"
+        name="amount"
+        type="number"
+        placeholder="0" /></label
+    ><button>Donate!</button>
+  </form>
+</section>
+```
+
+### Progress
+
+For the progress section, you will need to replace the value `$0` with a dynamic value based on the donations.
+
+```html
+<section class="progress">
+  <h2>
+    Raised <span class="secondary">$0</span> of
+    <span class="secondary">$1000</span>
+  </h2>
+</section>
+```
+
+### Recent Donations
+
+For the recent donations section, you will need to have a number of `li` elements equal to the number of donations. Each `li` should include the person who donated, the amount, and their caption.
+
+```html
+<section class="sidebar">
+  <section>
+    <h2>Recent Donations</h2>
+    <ul>
+      <li><span>Jo donated $25</span>You really need this. Really.</li>
+      <li><span>Rami donated $10</span>Here, take a break from work!</li>
+      <!-- etc... -->
+    </ul>
+  </section>
+</section>
+```

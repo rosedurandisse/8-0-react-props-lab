@@ -1,31 +1,37 @@
 describe("Index", () => {
-  beforeEach(() => {
-    cy.visit("http://localhost:3000/");
+  it("displays a top bar", () => {
+    cy.react("TopBar").should("exist");
+    cy.react("TopBar").contains("GoFundMe");
+    cy.react("TopBar").contains(
+      "Help me go on a vacation to a beach somewhere!"
+    );
   });
 
-  it("displays a top bar", () => {
-    cy.contains("Go Fund Me");
-    cy.contains("Help me go on a vacation");
-  })
-
   it("displays the progress total", () => {
-    cy.contains("Raised $441 of $1000");
+    cy.react("Progress").should("exist");
+    cy.react("Progress").contains("Raised $335 of $1000");
   });
 
   it("includes form elements", () => {
-    cy.get("button");
-    cy.get("input[type='range']");
-  })
+    cy.react("DonationForm").should("exist");
+    cy.react("DonationForm").contains("You could be donation #6!");
+    cy.react("DonationForm").get("form").should("exist");
+    cy.react("DonationForm").get("form input").should("exist");
+  });
 
   it("lists donations", () => {
-    cy.contains("Jo donated $251");
-    cy.contains("do you luv me")
-    cy.contains("John donated $30");
-    cy.contains("Here take a break from work")
-    cy.contains("Michelle donated $20");
-    cy.contains("lol")
-    cy.contains("Emily donated $110");
-    cy.contains("Sam donated $30");
-    cy.contains("Go to miami")
+    cy.react("RecentDonations").should("exist");
+    cy.react("RecentDonations").contains("Jo");
+    cy.react("RecentDonations").contains("Rami");
+    cy.react("RecentDonations").contains("Michelle");
+    cy.react("RecentDonations").contains("Malinda");
+    cy.react("RecentDonations").contains("Sam");
+    cy.react("RecentDonations").contains("You really need this. Really.");
+    cy.react("RecentDonations").contains("Here, take a break from work!");
+    cy.react("RecentDonations").contains(
+      "LOL! You are too funny. Happy to do this for you. :)"
+    );
+    cy.react("RecentDonations").contains("Have fun!");
+    cy.react("RecentDonations").contains("Come visit me in Miami!");
   });
 });
